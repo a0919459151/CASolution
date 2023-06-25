@@ -1,3 +1,5 @@
+using CASolution.Api.Contracts;
+using CASolution.Application.Interfaces.WeatherForecast;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CASolution.Api.Controllers;
@@ -6,27 +8,26 @@ namespace CASolution.Api.Controllers;
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+    private readonly IWeatherForecastSerivce _weatherForecastSerivce;
 
-    private readonly ILogger<WeatherForecastController> _logger;
-
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(IWeatherForecastSerivce weatherForecastSerivce)
     {
-        _logger = logger;
+        _weatherForecastSerivce = weatherForecastSerivce;
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    public async Task<IActionResult> GetWeatherForecast()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        var result = await _weatherForecastSerivce.GetWeatherForecast();
+
+        var response = result.Select(x => new GetWeatherForecastResponse
         {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+            Date = x.Date,
+            TemperatureC = x.TemperatureC,
+            TemperatureF = x.TemperatureF,
+            Summary = x.Summary
+        });
+
+        return Ok(response);
     }
 }
