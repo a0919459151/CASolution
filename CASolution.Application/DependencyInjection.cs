@@ -1,5 +1,5 @@
 using CASolution.Application.Interfaces.WeatherForecast;
-using CASolution.Application.Serivcies.WeatherForecast;
+using CASolution.Application.services.WeatherForecast;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CASolution.Application;

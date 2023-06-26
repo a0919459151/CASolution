@@ -1,12 +1,12 @@
 using CASolution.Api.Contracts;
 using CASolution.Application.Interfaces.WeatherForecast;
+using CASolution.Application.services.WeatherForecast;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CASolution.Api.Controllers;
 
-[ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class WeatherForecastController : ApiController
 {
     private readonly IWeatherForecastSerivce _weatherForecastSerivce;
 
@@ -18,16 +18,21 @@ public class WeatherForecastController : ControllerBase
     [HttpGet(Name = "GetWeatherForecast")]
     public async Task<IActionResult> GetWeatherForecast()
     {
-        var result = await _weatherForecastSerivce.GetWeatherForecast();
+        var results = await _weatherForecastSerivce.GetWeatherForecast();
 
-        var response = result.Select(x => new GetWeatherForecastResponse
+        return results.Match(
+            results => Ok(MapToResponse(results)),
+            errors => Problem(errors));
+    }
+
+    private static IEnumerable<GetWeatherForecastResponse> MapToResponse(IEnumerable<WeatherForecastResult> results)
+    {
+        return results.Select(x => new GetWeatherForecastResponse
         {
             Date = x.Date,
             TemperatureC = x.TemperatureC,
             TemperatureF = x.TemperatureF,
             Summary = x.Summary
         });
-
-        return Ok(response);
     }
 }

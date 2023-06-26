@@ -1,4 +1,4 @@
-using CASolution.Application.Serivcies.WeatherForecast;
+using CASolution.Application.services.WeatherForecast;
 using CASolution.Domain.Enities;
 
 namespace CASolution.Infrastructure.Persistence;

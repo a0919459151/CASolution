@@ -1,8 +1,9 @@
-using CASolution.Application.Serivcies.WeatherForecast;
+using CASolution.Application.services.WeatherForecast;
+using ErrorOr;
 
 namespace CASolution.Application.Interfaces.WeatherForecast;
 
 public interface IWeatherForecastSerivce
 {
-    Task<IEnumerable<WeatherForecastResult>> GetWeatherForecast();
+    Task<ErrorOr<IEnumerable<WeatherForecastResult>>> GetWeatherForecast();
 }
