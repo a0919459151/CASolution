@@ -1,15 +1,14 @@
-using CASolution.Application.Interfaces.WeatherForecast;
+using CASolution.Application.Interfaces.Persistence;
 using CASolution.Domain.Errors;
-using CASolution.Infrastructure.Persistence;
 using ErrorOr;
 
 namespace CASolution.Application.services.WeatherForecast;
 
-public class WeatherForecastSerivce : IWeatherForecastSerivce
+public class WeatherForecastService : IWeatherForecastService
 {
     private readonly IWeatherRepository _weatherRepository;
 
-    public WeatherForecastSerivce(IWeatherRepository weatherRepository)
+    public WeatherForecastService(IWeatherRepository weatherRepository)
     {
         _weatherRepository = weatherRepository;
     }
@@ -20,7 +19,7 @@ public class WeatherForecastSerivce : IWeatherForecastSerivce
 
         if (!weathers.Any())
         {
-            return Errors.WeatherForcast.NotFound;
+            return Errors.WeatherForecast.NotFound;
         }
 
         var results = weathers.Select(w => new WeatherForecastResult

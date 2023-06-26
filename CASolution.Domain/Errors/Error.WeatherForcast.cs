@@ -4,10 +4,10 @@ namespace CASolution.Domain.Errors;
 
 public static class Errors
 {
-    public static class WeatherForcast
+    public static class WeatherForecast
     {
         public static Error NotFound => Error.NotFound(
-            code: "WeatherForcast.NotFound",
-            description: "Weather forcast not found.");
+            code: "WeatherForecast.NotFound",
+            description: "Weather forecast not found.");
     }
 }

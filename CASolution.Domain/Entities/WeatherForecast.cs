@@ -1,4 +1,4 @@
-namespace CASolution.Domain.Enities;
+namespace CASolution.Domain.Entities;
 
 public class WeatherForecast
 {

@@ -1,9 +1,8 @@
-using CASolution.Application.services.WeatherForecast;
-using CASolution.Domain.Enities;
+using WeatherForecastEntity = CASolution.Domain.Entities.WeatherForecast; // tyoe alias 
 
-namespace CASolution.Infrastructure.Persistence;
+namespace CASolution.Application.Interfaces.Persistence;
 
 public interface IWeatherRepository
 {
-    Task<IEnumerable<WeatherForecast>> GetWeatherForecastAsync();
+    Task<IEnumerable<WeatherForecastEntity>> GetWeatherForecastAsync();
 }

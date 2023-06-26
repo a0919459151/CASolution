@@ -1,5 +1,3 @@
-using CASolution.Domain.Enities;
-
 namespace CASolution.Application.services.WeatherForecast;
 
 public class WeatherForecastResult

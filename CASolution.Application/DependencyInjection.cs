@@ -1,4 +1,3 @@
-using CASolution.Application.Interfaces.WeatherForecast;
 using CASolution.Application.services.WeatherForecast;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,7 +7,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddScoped<IWeatherForecastSerivce, WeatherForecastSerivce>();
+        services.AddScoped<IWeatherForecastService, WeatherForecastService>();
         return services;
     }
 }

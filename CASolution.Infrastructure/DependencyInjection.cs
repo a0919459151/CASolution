@@ -1,3 +1,4 @@
+using CASolution.Application.Interfaces.Persistence;
 using CASolution.Infrastructure.Persistence;
 using Microsoft.Extensions.DependencyInjection;
 

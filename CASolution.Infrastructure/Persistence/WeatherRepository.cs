@@ -1,4 +1,5 @@
-using CASolution.Domain.Enities;
+using CASolution.Application.Interfaces.Persistence;
+using CASolution.Domain.Entities;
 
 namespace CASolution.Infrastructure.Persistence;
 
