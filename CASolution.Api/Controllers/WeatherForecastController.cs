@@ -1,5 +1,6 @@
 using CASolution.Api.Contracts;
 using CASolution.Application.services.WeatherForecast;
+using CASolution.Domain.Entities;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,15 @@ public class WeatherForecastController : ApiController
         var results = await _weatherForecastService.GetWeatherForecast();
         return results.Match(
             results => Ok(results.Adapt<IEnumerable<GetWeatherForecastResponse>>()),
+            errors => Problem(errors));
+    }
+
+    [HttpPost(Name = "UpsertWeatherForecast")]
+    public async Task<IActionResult> UpsertWeatherForecast(UpsertWeatherForecastRequest request)
+    {
+        var result = await _weatherForecastService.UpsertWeatherForecast(request.Adapt<WeatherForecast>());
+        return result.Match(
+            result => Ok(result),
             errors => Problem(errors));
     }
 }
