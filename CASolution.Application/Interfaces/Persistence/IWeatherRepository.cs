@@ -4,8 +4,10 @@ namespace CASolution.Application.Interfaces.Persistence;
 
 public interface IWeatherRepository
 {
+    bool IsExistWeatherForecastByDate(DateOnly date);
     Task<IEnumerable<WeatherForecastEntity>> GetWeatherForecast();
     Task<WeatherForecastEntity?> GetWeatherForecastByDate(DateOnly date);
-    Task<WeatherForecastEntity> CreateWeatherForecast(WeatherForecastEntity weatherForecast);
-    Task<WeatherForecastEntity> UpdateWeatherForecast(WeatherForecastEntity weatherForecast);
+
+    void CreateWeatherForecast(WeatherForecastEntity weatherForecast);
+    void UpdateWeatherForecast(WeatherForecastEntity weatherForecast);
 }

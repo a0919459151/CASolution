@@ -1,6 +1,6 @@
 namespace CASolution.Api.Contracts;
 
-public class UpsertWeatherForecastRequest
+public class CreateWeatherForecastRequest
 {
     public DateOnly Date { get; set; }
 

@@ -25,12 +25,21 @@ public class WeatherForecastController : ApiController
             errors => Problem(errors));
     }
 
-    [HttpPost(Name = "UpsertWeatherForecast")]
-    public async Task<IActionResult> UpsertWeatherForecast(UpsertWeatherForecastRequest request)
+    [HttpPost(Name = "CreateWeatherForecast")]
+    public async Task<IActionResult> CreateWeatherForecast(CreateWeatherForecastRequest request)
     {
-        var result = await _weatherForecastService.UpsertWeatherForecast(request.Adapt<WeatherForecast>());
-        return result.Match(
-            result => Ok(result),
+        var results = await _weatherForecastService.CreateWeatherForecast(request.Adapt<WeatherForecast>());
+        return results.Match(
+           results => Ok(results.Adapt<CreateWeatherForecastResponse>()),
+           errors => Problem(errors));
+    }
+
+    [HttpPut(Name = "UpdateWeatherForecast")]
+    public async Task<IActionResult> UpdateWeatherForecast(UpdateWeatherForecastRequest request)
+    {
+        var results = await _weatherForecastService.UpdateWeatherForecast(request.Adapt<WeatherForecast>());
+        return results.Match(
+            results => Ok(results.Adapt<UpdateWeatherForecastResponse>()),
             errors => Problem(errors));
     }
 }
