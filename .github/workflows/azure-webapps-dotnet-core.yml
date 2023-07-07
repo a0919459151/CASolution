@@ -10,7 +10,7 @@ env:
   AZURE_WEBAPP_NAME: ca-solution
   AZURE_WEBAPP_PACKAGE_PATH: './publish'
   DOTNET_VERSION: '7'
-  SLN: '.CASolution.sln'
+  SLN: './CASolution.sln'
 
 jobs:
   publish:
