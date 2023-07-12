@@ -1,4 +1,4 @@
-name: Publish 🚀
+name: Publish And Deploy 🚀
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ env:
   SLN_PATH: './CASolution.sln'
 
 jobs:
-  publish:
+  publish-and-deploy:
     runs-on: ubuntu-latest
     
     steps:
